@@ -21,11 +21,13 @@ const requestSchema = new mongoose.Schema(
             type: String,
             required: [true, 'Please enter description of the food']
         },
-        confirm:{
-            type: Boolean,
-            required: true,
-            default: false
-        }
+        status:{
+            type: String,
+            require: true,
+            enum: ['pending', 'confirmed', 'denied'],
+            default: 'pending',
+
+        },
 
     },
     {

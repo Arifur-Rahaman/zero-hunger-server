@@ -30,8 +30,8 @@ const foodSchema = new mongoose.Schema(
         status:{
             type: String,
             require: true,
-            enum: ['open', 'booked', 'served'],
-            default: 'open',
+            enum: ['available', 'booked', 'served'],
+            default: 'available',
 
         },
 
