@@ -46,7 +46,7 @@ const confirmFoodRequest = asyncHandler(async (req, res) => {
     const updatedFood = await Food.findByIdAndUpdate(food, {status:'booked'}, {new: true})
     await Request.updateMany({food}, {status: 'denied'})
     await Request.findByIdAndUpdate(requestId, {status:'confirmed'}, {new: true})
-    const updatedRequest = await Request.find({food})
+    const updatedRequest = await Request.find({food}).populate('volunteer')
     res.status(200).json(updatedRequest)
     
 })
