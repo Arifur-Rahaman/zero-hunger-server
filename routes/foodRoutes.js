@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getFoods, addFood, getUserFood } = require('../controllers/foodControllers')
+const { getFoods, addFood, getUserFood, EditFoodById } = require('../controllers/foodControllers')
 const { protect } = require('../middleware/authMiddleware')
 
 router.route('/')
@@ -8,5 +8,7 @@ router.route('/')
     .post(protect, addFood)
 router.route('/my')
     .get(protect, getUserFood)
+router.route('/:id')
+    .put(protect, EditFoodById)
 
 module.exports = router

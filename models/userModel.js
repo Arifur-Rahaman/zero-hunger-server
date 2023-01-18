@@ -13,7 +13,6 @@ const userSchema = mongoose.Schema({
     phone:{
         type: String,
         required: [true, 'Please add a phone'],
-        unique: true
     },
     address:{
         type: String,

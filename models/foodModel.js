@@ -23,6 +23,14 @@ const foodSchema = new mongoose.Schema(
             type: String,
             required: [true, 'Please enter description of the food']
         },
+        quantity: {
+            type: String,
+            required: [true, 'Please enter quantity of the food']
+        },
+        imageURL:{
+            type: String,
+            required: [true, 'Please enter image URL of the food']
+        },
         location: {
             lat: { type: Number, required: true },
             lng: { type: Number, required: true },

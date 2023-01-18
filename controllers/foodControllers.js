@@ -7,9 +7,9 @@ const Food = require('../models/foodModel')
 //@route Post /api/foods
 //@access Private
 const addFood = asyncHandler(async (req, res) => {
-    const { foodName, description, address, area, location } = req.body
+    const { foodName, description, address, area, location, quantity, imageURL } = req.body
 
-    if (!foodName || !description || !address || !area || !location) {
+    if (!foodName || !description || !address || !area || !location || !quantity ||  !imageURL) {
         res.status(400)
         throw new Error('Please add all information')
     }
@@ -26,6 +26,8 @@ const addFood = asyncHandler(async (req, res) => {
         area,
         address,
         location,
+        quantity,
+        imageURL,
         donor: req.user._id,
     })
     res.status(201).json(food)
@@ -72,10 +74,25 @@ const getUserFood = asyncHandler(async (req, res) => {
     res.status(200).json(food)
 })
 
+//desc PUT Edit food by id
+//@route /api/foods/:id
+//@access private
+const EditFoodById = asyncHandler(
+    async (req, res) => {
+        const id = req.params.id
+        const food = await Food.findById(id)
+        if (!food) {
+            res.status(404)
+            throw new Error('Product not found')
+        }
+        const updatedFood = await Food.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        res.status(200).json(updatedFood)
+    }
+)
 
 module.exports = {
     addFood,
     getFoods,
     getUserFood,
-
+    EditFoodById
 }
