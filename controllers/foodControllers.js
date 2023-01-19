@@ -110,10 +110,33 @@ const EditFoodById = asyncHandler(
     }
 )
 
+//@desc DELETE  food
+//@route /api/foods/:id
+//@access Private
+const deleteFood = asyncHandler(async(req, res)=>{
+    //Get user using the id in the jwt
+    const user = await User.findById(req.user.id)
+
+    if(!user){
+        res.status(401)
+        throw new Error('User not found')
+    }
+    const food = await Food.findById(req.params.id)
+
+    if(!food){
+        res.status(404)
+        throw new Error('Food not found')
+    }
+    const removed = await food.remove()
+    res.status(200).json({food: removed, success: true})
+})
+
+
 module.exports = {
     addFood,
     getFoods,
     getUserFood,
     EditFoodById,
-    getFoodById
+    getFoodById,
+    deleteFood
 }
