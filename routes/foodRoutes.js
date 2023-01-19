@@ -1,14 +1,21 @@
 const express = require('express')
 const router = express.Router()
-const { getFoods, addFood, getUserFood, EditFoodById } = require('../controllers/foodControllers')
+const { getFoods,
+    addFood,
+    getUserFood,
+    EditFoodById,
+    getFoodById } = require('../controllers/foodControllers')
 const { protect } = require('../middleware/authMiddleware')
 
 router.route('/')
     .get(protect, getFoods)
     .post(protect, addFood)
+
 router.route('/my')
     .get(protect, getUserFood)
+
 router.route('/:id')
     .put(protect, EditFoodById)
+    .get(protect, getFoodById)
 
 module.exports = router

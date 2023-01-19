@@ -74,6 +74,26 @@ const getUserFood = asyncHandler(async (req, res) => {
     res.status(200).json(food)
 })
 
+//@desc food by id
+//@route /api/foods/:id
+//@access Private
+const getFoodById = asyncHandler(async (req, res) => {
+    //Get user using the id in the jwt
+    const user = await User.findById(req.user.id)
+
+    if (!user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    const food = await Food.findById(req.params.id)
+    if (!food) {
+        res.status(404)
+        throw new Error('Food not found')
+    }
+    res.status(200).json(food)
+})
+
 //desc PUT Edit food by id
 //@route /api/foods/:id
 //@access private
@@ -94,5 +114,6 @@ module.exports = {
     addFood,
     getFoods,
     getUserFood,
-    EditFoodById
+    EditFoodById,
+    getFoodById
 }
