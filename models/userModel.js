@@ -18,6 +18,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please add a address'],
     },
+    imageURL:{
+        type: String,
+        default: 'https://res.cloudinary.com/ars-mart/image/upload/v1674221579/m5qu0ma1r6c9udpi2pk3.jpg'
+    },
     password: {
         type: String,
         required: [true, 'Please add a password']

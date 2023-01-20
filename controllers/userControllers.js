@@ -37,6 +37,7 @@ const registerUser = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            imageURL: user.imageURL,
             token: generateToken(user._id)
         })
     }
@@ -60,6 +61,7 @@ const signinUser = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            imageURL: user.imageURL,
             token: generateToken(user._id)
         })
     }else{
@@ -77,7 +79,10 @@ const getMe = asyncHandler( async (req, res)=>{
     const user = {
         id: req.user._id,
         email: req.user.email,
-        name: req.user.name
+        name: req.user.name,
+        imageURL: req.user.imageURL,
+        address: req.user.address,
+        phone: req.user.phone,
     }
     res.status(200).json(user)
 })
