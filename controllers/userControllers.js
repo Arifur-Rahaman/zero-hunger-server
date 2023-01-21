@@ -87,6 +87,23 @@ const getMe = asyncHandler( async (req, res)=>{
     res.status(200).json(user)
 })
 
+//desc PUT Update user
+//@route /api/users/my
+//@access private
+const updateUser = asyncHandler(
+    async (req, res) => {
+        const user = await User.findById(req.user._id)
+        if (!user) {
+            res.status(404)
+            throw new Error('Product not found')
+        }
+        user.imageURL = req.body.imageURL || user.imageURL
+        const updatedUser = await user.save()
+        // const updatedData = await User.findByIdAndUpdate(req.user._id, userData, { new: true })
+        res.status(200).json(updatedUser)
+    }
+)
+
 
 const generateToken = (id)=>{
     return jwt.sign({id}, process.env.JWT_SECRET, {expiresIn:'30d'})
@@ -98,4 +115,5 @@ module.exports = {
     registerUser,
     signinUser,
     getMe,
+    updateUser
 }
