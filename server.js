@@ -15,6 +15,7 @@ app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/foods', require('./routes/foodRoutes'))
 app.use('/api/requests', require('./routes/requestRoutes'))
 app.use('/api/upload', require('./routes/uploadRoutes'))
+app.use('/api/rates', require('./routes/ratingRoutes'))
 
 
 app.use('/api/tickets', require('./routes/ticketRoutes'))

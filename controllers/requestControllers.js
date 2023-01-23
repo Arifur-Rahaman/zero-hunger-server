@@ -94,7 +94,7 @@ const getFoodRequestByFoodId = asyncHandler(async (req, res) => {
         throw new Error('User not found')
     }
 
-    const request = await Request.find({ food: food }).populate('volunteer')
+    const request = await Request.find({ food: food }).populate('volunteer food')
     if (!request) {
         res.status(404)
         throw new Error('Request not found')
@@ -122,6 +122,28 @@ const getFoodRequestByVolunteerId = asyncHandler(async (req, res) => {
     res.status(200).json(request)
 })
 
+//@desc DELETE  request
+//@route /api/requests/:id
+//@access Private
+
+const deleteRequest = asyncHandler(async(req, res)=>{
+    //Get user using the id in the jwt
+    const user = await User.findById(req.user.id)
+
+    if(!user){
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    const request = await Request.findById(req.params.id)
+    if(!request){
+        res.status(404)
+        throw new Error('Request not found')
+    }
+    const removed = await request.remove()
+    res.status(200).json(removed)
+})
+
 
 
 
@@ -129,6 +151,7 @@ module.exports = {
     makeFoodRequest,
     getFoodRequestByFoodId,
     getFoodRequestByVolunteerId,
-    confirmFoodRequest
+    confirmFoodRequest,
+    deleteRequest,
 
 }

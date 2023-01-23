@@ -98,6 +98,9 @@ const updateUser = asyncHandler(
             throw new Error('Product not found')
         }
         user.imageURL = req.body.imageURL || user.imageURL
+        user.name = req.body.name || user.name
+        user.email = req.body.email || user.email
+        user.address = req.body.address || user.address
         const updatedUser = await user.save()
         // const updatedData = await User.findByIdAndUpdate(req.user._id, userData, { new: true })
         res.status(200).json(updatedUser)

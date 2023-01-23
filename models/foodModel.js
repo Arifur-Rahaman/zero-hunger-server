@@ -35,6 +35,10 @@ const foodSchema = new mongoose.Schema(
             lat: { type: Number, required: true },
             lng: { type: Number, required: true },
         },
+        servedInfo: {
+            imageURL: { type: String, default:'' },
+            description: { type: String, default:'' },
+        },
         status:{
             type: String,
             require: true,
