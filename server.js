@@ -10,7 +10,7 @@ const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(cors({origin:['http://localhost:3000']}));
+app.use(cors({origin:['http://localhost:3000', 'https://zero-hunger-client.vercel.app']}));
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/foods', require('./routes/foodRoutes'))
 app.use('/api/requests', require('./routes/requestRoutes'))
