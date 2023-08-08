@@ -17,9 +17,6 @@ app.use('/api/requests', require('./routes/requestRoutes'))
 app.use('/api/upload', require('./routes/uploadRoutes'))
 app.use('/api/rates', require('./routes/ratingRoutes'))
 
-
-app.use('/api/tickets', require('./routes/ticketRoutes'))
-
 app.get('/', (req, res)=>{
   res.json({message: 'Welcome to support desk api'})
 })
