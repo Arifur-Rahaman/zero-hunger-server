@@ -18,7 +18,7 @@ app.use('/api/upload', require('./routes/uploadRoutes'))
 app.use('/api/rates', require('./routes/ratingRoutes'))
 
 app.get('/', (req, res)=>{
-  res.json({message: 'Welcome to support desk api'})
+  res.json({message: 'Welcome to zero hunger api'})
 })
 
 app.use(errorHandler)
